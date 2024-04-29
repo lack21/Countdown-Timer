@@ -1,0 +1,183 @@
+// Countdown Timer
+
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Red Hat Text", sans-serif;
+  font-weight: 700;
+}
+
+// Colors
+$grayishBlue: hsl(237, 18%, 59%);
+$softRed: hsl(345, 95%, 68%);
+$white: hsl(0, 0%, 100%);
+$darkDesaturatedBlue: hsl(236, 21%, 26%);
+$veryDarkDesaturatedBlue: hsl(236, 21%, 21%);
+$darkBlue: hsl(235, 16%, 14%);
+$veryDarkBlue: hsl(234, 17%, 12%);
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, $veryDarkBlue, $darkBlue);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url(images/bg-stars.svg);
+    width: 100%;
+    height: 100%;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: url(images/pattern-hills.svg) no-repeat;
+    background-size: contain;
+    background-position: bottom;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  min-height: 100vh;
+  text-align: center;
+
+  .title {
+    color: $white;
+    font-size: 1.35rem;
+    letter-spacing: 0.35rem;
+    text-transform: uppercase;
+    margin-top: 2.5rem;
+  }
+
+  .timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+
+    .time {
+      position: relative;
+      display: grid;
+      place-content: center;
+      width: 120px;
+      height: 120px;
+      border-radius: 0.5rem;
+      -webkit-border-radius: 0.5rem;
+      -moz-border-radius: 0.5rem;
+      -ms-border-radius: 0.5rem;
+      -o-border-radius: 0.5rem;
+      background-color: $darkDesaturatedBlue;
+      color: $softRed;
+      font-size: 4rem;
+      isolation: isolate;
+
+      &::before {
+        content: "";
+        width: 100%;
+        height: 50%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: $veryDarkDesaturatedBlue;
+        z-index: -1;
+        border-radius: 0.5rem 0.5rem 0 0;
+        -webkit-border-radius: 0.5rem 0.5rem 0 0;
+        -moz-border-radius: 0.5rem 0.5rem 0 0;
+        -ms-border-radius: 0.5rem 0.5rem 0 0;
+        -o-border-radius: 0.5rem 0.5rem 0 0;
+      }
+
+      &::after {
+        content: "DAYS";
+        font-size: 1rem;
+        color: $grayishBlue;
+        position: absolute;
+        justify-self: center;
+        bottom: -2.5rem;
+        letter-spacing: 0.35rem;
+      }
+
+      &:nth-child(2)::after {
+        content: "HOURS";
+      }
+
+      &:nth-child(3)::after {
+        content: "MINUTES";
+      }
+
+      &:nth-child(4)::after {
+        content: "SECONDS";
+      }
+    }
+  }
+
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    z-index: 2;
+    margin-top: 5rem;
+
+    img {
+      cursor: pointer;
+      display: block;
+
+      &:hover {
+        filter: brightness(0) invert(1);
+        -webkit-filter: brightness(0) invert(1);
+      }
+    }
+  }
+}
+
+// For Smaller Devices
+@media screen and (max-width: 668px) {
+  .main {
+    .title {
+      font-size: 1.1rem;
+    }
+
+    .timer {
+      gap: 1.25rem;
+
+      .time {
+        font-size: 2.5rem;
+        width: 90px;
+        height: 90px;
+
+        &::after {
+          font-size: 0.7rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 428px) {
+  .main .timer {
+    gap: 1rem;
+
+    .time {
+      width: 75px;
+      height: 75px;
+
+      &::after {
+        font-size: 0.575rem;
+      }
+    }
+  }
+}
